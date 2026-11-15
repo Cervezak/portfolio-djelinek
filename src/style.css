@@ -19,11 +19,7 @@ svg { width: 20px; height: 20px; flex: none; }
 h1, h2, h3 { font-family: Inter, system-ui, sans-serif; margin: 0; letter-spacing: -.045em; }
 h2 { font-size: clamp(1.85rem, 4vw, 3.05rem); line-height: 1.12; }
 p { line-height: 1.65; }
-.wrap {
-  width: min(calc(100% - 72px), max(1180px, 77.5vw));
-  max-width: 1720px;
-  margin-inline: auto;
-}
+.wrap { width: min(1180px, calc(100% - 72px)); margin-inline: auto; }
 .skip { position: fixed; top: 10px; left: 10px; transform: translateY(-160%); padding: 12px; background: white; z-index: 2; }
 .skip:focus { transform: none; }
 .site-header { border-bottom: 1px solid var(--line); }
