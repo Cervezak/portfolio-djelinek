@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
+import { Analytics } from '@vercel/analytics/react'
 import './style.css'
 
 const portrait = '/david-jelinek.png'
@@ -250,6 +251,7 @@ function App() {
       </section>
     </main>
     <footer className="wrap footer"><span>© {new Date().getFullYear()} David Jelínek</span><a href="#uvod">Zpět nahoru ↑</a></footer>
+    <Analytics />
   </>
 }
 
