@@ -29,7 +29,7 @@ const services = [
   { id: 'analytics', icon: 'chart', title: 'Google Analytics 4', text: 'Zjistím, jestli web měří správně a co se z dat dá vyčíst. Dostanete přehled výsledků i konkrétní kroky, které můžete udělat jako první.', items: ['Kontrola měření, událostí a konverzí', 'Analýza zdrojů návštěvnosti a nákupní cesty', 'Přehledné reporty a doporučení'] },
   { id: 'mailing', icon: 'mail', title: 'E-mail marketing', text: 'Připravím jednorázové kampaně i automatické série. Od návrhu šablony až po vyhodnocení výsledků.', items: ['Responzivní šablony a příprava kampaní', 'Nastavení odesílací domény a segmentace publika', 'Uvítací série, opuštěný košík a automatizace'] },
   { id: 'ads', icon: 'ads', title: 'Google Ads', text: 'Převezmu nebo nastavím kampaně a budu sledovat, jak se investice promítá do objednávek nebo poptávek.', items: ['Kontrola účtu, kampaní a konverzí', 'Správa rozpočtu, inzerátů a klíčových slov', 'Průběžná optimalizace a vyhodnocení'] },
-  { id: 'obsah', icon: 'web', title: 'Obsah webů a e-shopů', text: 'Postarám se o každodenní správu obsahu ve vašem redakčním nebo e-shopovém systému.', items: ['Úpravy produktů, kategorií a stránek', 'Aktualizace textů, obrázků a bannerů', 'Základní SEO a kontrola obsahu po zveřejnění'] },
+  { id: 'obsah', icon: 'web', title: 'Obsah webů a e-shopů', text: 'Postarám se o každodenní správu obsahu ve vašem redakčním nebo e-shopovém systému.', items: ['Úpravy úvodní stránky, kategorií a produktů', 'Přidávání a úpravy vizuálních bloků v editoru', 'Aktualizace textů, obrázků a bannerů', 'Základní SEO a kontrola obsahu po zveřejnění'] },
 ]
 
 function Report() {
@@ -104,9 +104,9 @@ function AdsExample() {
 }
 
 const contentChanges = [
-  ['Dámská běžecká bunda', 'Produkt', 'Upřesnění materiálu, doplnění velikostní tabulky a fotek.'],
+  ['Sezónní nabídka', 'Úvodní stránka', 'Přidání bloku s výběrem produktů, úprava banneru a kontrola zobrazení na mobilu.'],
   ['Výbava na běh', 'Kategorie', 'Přehlednější řazení produktů a krátký úvod pro zákazníky.'],
-  ['Sezónní nabídka', 'Úvodní stránka', 'Výměna banneru, kontrola odkazu a zobrazení na mobilu.'],
+  ['Dámská běžecká bunda', 'Produkt', 'Upřesnění materiálu, doplnění velikostní tabulky a fotek.'],
 ]
 
 function ContentExample() {
