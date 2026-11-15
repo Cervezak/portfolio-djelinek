@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './style.css'
 
@@ -27,7 +27,7 @@ const reports = [
 
 const services = [
   { id: 'analytics', icon: 'chart', title: 'Google Analytics 4', text: 'Zjistím, jestli web měří správně a co se z dat dá vyčíst. Dostanete přehled výsledků i konkrétní kroky, které můžete udělat jako první.', items: ['Kontrola měření, událostí a konverzí', 'Analýza zdrojů návštěvnosti a nákupní cesty', 'Přehledné reporty a doporučení'] },
-  { id: 'mailing', icon: 'mail', title: 'E-mail marketing', text: 'Připravím jednorázové kampaně i automatické série. Od návrhu šablony až po vyhodnocení výsledků.', items: ['Responzivní šablony a příprava kampaní', 'Segmentace publika a péče o databázi', 'Uvítací série, opuštěný košík a automatizace'] },
+  { id: 'mailing', icon: 'mail', title: 'E-mail marketing', text: 'Připravím jednorázové kampaně i automatické série. Od návrhu šablony až po vyhodnocení výsledků.', items: ['Responzivní šablony a příprava kampaní', 'Nastavení odesílací domény a segmentace publika', 'Uvítací série, opuštěný košík a automatizace'] },
   { id: 'ads', icon: 'ads', title: 'Google Ads', text: 'Převezmu nebo nastavím kampaně a budu sledovat, jak se investice promítá do objednávek nebo poptávek.', items: ['Kontrola účtu, kampaní a konverzí', 'Správa rozpočtu, inzerátů a klíčových slov', 'Průběžná optimalizace a vyhodnocení'] },
   { id: 'obsah', icon: 'web', title: 'Obsah webů a e-shopů', text: 'Postarám se o každodenní správu obsahu ve vašem redakčním nebo e-shopovém systému.', items: ['Úpravy produktů, kategorií a stránek', 'Aktualizace textů, obrázků a bannerů', 'Základní SEO a kontrola obsahu po zveřejnění'] },
 ]
@@ -52,6 +52,148 @@ function Report() {
       </div>
       <div className="axis" aria-hidden="true"><span>1. týden</span><span>8. týden</span></div>
       <p className="report-note">{report.note}</p>
+    </div>
+  </section>
+}
+
+
+const channels = [
+  { name: 'Organické vyhledávání', value: 42 },
+  { name: 'Placené vyhledávání', value: 28 },
+  { name: 'Přímé návštěvy', value: 20 },
+  { name: 'E-mail', value: 10 },
+]
+
+function AnalyticsExample() {
+  return <div className="service-example">
+    <div className="example-head"><h4>Výkon webu za 8 týdnů</h4><span>Ukázková data</span></div>
+    <dl className="analytics-stats">
+      <div><dt>Návštěvy</dt><dd>8 240</dd></div>
+      <div><dt>Aktivní uživatelé</dt><dd>5 680</dd></div>
+      <div><dt>Klíčové události</dt><dd>310</dd></div>
+    </dl>
+    <h5>Zdroje návštěvnosti</h5>
+    <ul className="channel-list">
+      {channels.map(channel => <li key={channel.name}>
+        <span>{channel.name}</span><strong>{channel.value} %</strong>
+        <span className="channel-track" aria-hidden="true"><span style={{ width: `${channel.value}%` }} /></span>
+      </li>)}
+    </ul>
+  </div>
+}
+
+function AdsExample() {
+  return <div className="service-example">
+    <div className="example-head"><h4>Struktura kampaně ve Vyhledávání</h4><span>Ukázka</span></div>
+    <ul className="ads-tree">
+      <li>
+        <div><small>Kampaň</small><strong>Cyklistické vybavení</strong><span>Rozpočet · lokalita · strategie nabídek</span></div>
+        <ul>
+          <li>
+            <div><small>Reklamní sestava</small><strong>Cyklistické helmy</strong><span>Klíčová slova · cílová stránka</span></div>
+            <ul><li><div><small>Reklamy</small><strong>Helmy na silnici i do terénu</strong><span>Varianty titulků a popisů</span></div></li></ul>
+          </li>
+          <li>
+            <div><small>Reklamní sestava</small><strong>Cyklistická světla</strong><span>Klíčová slova · cílová stránka</span></div>
+            <ul><li><div><small>Reklamy</small><strong>Přední a zadní světla na kolo</strong><span>Varianty titulků a popisů</span></div></li></ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+}
+
+const contentChanges = [
+  ['Dámská běžecká bunda', 'Produkt', 'Upřesnění materiálu, doplnění velikostní tabulky a fotek.'],
+  ['Výbava na běh', 'Kategorie', 'Přehlednější řazení produktů a krátký úvod pro zákazníky.'],
+  ['Sezónní nabídka', 'Úvodní stránka', 'Výměna banneru, kontrola odkazu a zobrazení na mobilu.'],
+]
+
+function ContentExample() {
+  return <div className="service-example">
+    <div className="example-head"><h4>Co upravím v e-shopu</h4><span>Ukázka</span></div>
+    <ul className="content-changes">
+      {contentChanges.map(([title, type, change]) => <li key={title}>
+        <small>{type}</small><strong>{title}</strong><span>{change}</span>
+      </li>)}
+    </ul>
+  </div>
+}
+
+const mailingSteps = [
+  ['Nastavení odesílací domény', 'Kontrola DNS záznamů SPF, DKIM a DMARC.'],
+  ['Rozdělení publika', 'Noví odběratelé a vracející se zákazníci dostanou odlišné sdělení.'],
+  ['Šablona a testování', 'Návrh e-mailu, který se dobře čte i na mobilu, a kontrola odkazů.'],
+  ['Automatizace a vyhodnocení', 'Například uvítací série po přihlášení a vyhodnocení prokliků.'],
+]
+
+function MailingExample() {
+  return <div className="service-example">
+    {video ? <>
+      <div className="example-head"><h4>Ukázka přípravy e-mailové kampaně</h4></div>
+      <video controls preload="none" src={video} aria-label="Ukázka přípravy e-mailové kampaně" />
+    </> : <>
+      <div className="example-head"><h4>Jak vzniká e-mailová kampaň</h4><span>Ukázka</span></div>
+      <ol className="mailing-steps">
+        {mailingSteps.map(([title, description]) => <li key={title}>
+          <div><strong>{title}</strong><span>{description}</span></div>
+        </li>)}
+      </ol>
+    </>}
+  </div>
+}
+
+const examples = {
+  analytics: AnalyticsExample,
+  mailing: MailingExample,
+  ads: AdsExample,
+  obsah: ContentExample,
+}
+
+function Services() {
+  const [selected, setSelected] = useState(0)
+  const tabs = useRef([])
+
+  function moveBetweenTabs(event, index) {
+    const positions = {
+      ArrowLeft: (index - 1 + services.length) % services.length,
+      ArrowRight: (index + 1) % services.length,
+      Home: 0,
+      End: services.length - 1,
+    }
+    const next = positions[event.key]
+    if (typeof next !== 'number') return
+    event.preventDefault()
+    setSelected(next)
+    tabs.current[next].focus()
+  }
+
+  return <section className="services-section" id="sluzby">
+    <div className="wrap">
+      <h2 id="services-title">S čím vám pomůžu</h2>
+      <div className="service-tabs" role="tablist" aria-labelledby="services-title">
+        {services.map((service, index) => <button key={service.id} type="button" role="tab"
+          id={`tab-${service.id}`} aria-controls={service.id} aria-selected={selected === index}
+          tabIndex={selected === index ? 0 : -1} ref={element => { tabs.current[index] = element }}
+          onKeyDown={event => moveBetweenTabs(event, index)} onClick={() => setSelected(index)}>
+          <span className="service-icon"><Icon name={service.icon} /></span>
+          {service.title}
+        </button>)}
+      </div>
+      {services.map((service, index) => {
+        const Example = examples[service.id]
+        return <div className="service" role="tabpanel" id={service.id} key={service.id}
+          aria-labelledby={`tab-${service.id}`} hidden={selected !== index} tabIndex={0}>
+          {selected === index && <>
+            <div className="service-copy">
+              <h3><span className="service-icon"><Icon name={service.icon} /></span>{service.title}</h3>
+              <p>{service.text}</p>
+              <ul>{service.items.map(item => <li key={item}>{item}</li>)}</ul>
+            </div>
+            <Example />
+          </>}
+        </div>
+      })}
     </div>
   </section>
 }
@@ -85,38 +227,25 @@ function App() {
         </div>
         <Report />
       </section>
-      <section className="services-section" id="sluzby">
-        <div className="wrap">
-          <h2>S čím vám pomůžu</h2>
-          <div className="services">
-            {services.map(service => <article className="service" id={service.id} key={service.id}>
-              <span className="service-icon"><Icon name={service.icon} /></span>
-              <h3>{service.title}</h3>
-              <p>{service.text}</p>
-              <ul>{service.items.map(item => <li key={item}>{item}</li>)}</ul>
-              {service.id === 'mailing' && video && <video controls preload="none" src={video} aria-label="Ukázka přípravy e-mailové kampaně" />}
-            </article>)}
-          </div>
-        </div>
-      </section>
+      <Services />
       <section className="wrap about" id="o-mne">
         <div>
           <h2>O mně</h2>
-          <p>Jsem David Jelínek a věnuji se webové analytice a online marketingu. Baví mě propojit to, co vidím v datech, s tím, co se dá upravit v kampani, newsletteru nebo přímo na webu.</p>
+          <p>Jsem David Jelínek. Webové analytice a online marketingu se věnuji přes pět let. Baví mě propojit to, co vidím v datech, s tím, co se dá upravit v kampani, newsletteru nebo přímo na webu.</p>
         </div>
         <div>
           <h2>Jak spolupráce probíhá</h2>
           <ol>
-            <li><strong>Ujasníme si cíl.</strong> Probereme, co chcete zjistit nebo zlepšit.</li>
-            <li><strong>Podívám se na současný stav.</strong> Zjistím, co už funguje a kde má změna největší smysl.</li>
-            <li><strong>Domluvíme se na dalších krocích.</strong> Může jít o jednorázovou analýzu i průběžnou správu.</li>
+            <li><strong>Řeknete mi, co potřebujete.</strong> Probereme třeba nový newsletter, úpravu e-shopu nebo kampaň, kterou chcete rozjet.</li>
+            <li><strong>Domluvíme se na zadání.</strong> Ujasníme si rozsah, termín a podklady, které budu potřebovat.</li>
+            <li><strong>Pustím se do práce.</strong> Výsledek spolu projdeme. Podle potřeby můžeme navázat průběžnou správou.</li>
           </ol>
         </div>
       </section>
       <section className="wrap contact" id="kontakt">
         <div className="contact-panel">
-          <div><h2>Máte projekt na mysli?</h2><p>Napište mi, co řešíte a s čím potřebujete pomoct.</p></div>
-          <a className="button contact-button" href={contact}>Napsat Davidovi <Icon name="arrow" /></a>
+          <div><h2>S čím vám můžu pomoct?</h2><p>Rád vám pomůžu vyřešit konkrétní problém nebo navrhnu, co zlepšit na webu, v kampaních či mailingu.</p></div>
+          <a className="button contact-button" href={contact}>Napište mi <Icon name="arrow" /></a>
         </div>
       </section>
     </main>
